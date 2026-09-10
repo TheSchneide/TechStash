@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TechStash - Dashboard</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Tech<span class="text-red">Stash</span></div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Dashboard</a>
+            <a href="inv.html">Inventory</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="page-header">
+            <h2>System Overview</h2>
+        </header>
+
+        <!-- Summary Cards -->
+        <div class="dashboard-grid">
+            <div class="summary-card">
+                <h3>Total Items</h3>
+                <div class="card-value" id="totalItems">0</div>
+                <p class="card-subtitle">Currently in database</p>
+            </div>
+            <div class="summary-card border-red">
+                <h3>Total Value</h3>
+                <div class="card-value">₱<span id="totalValue">0</span></div>
+                <p class="card-subtitle">Estimated inventory worth</p>
+            </div>
+            <div class="summary-card">
+                <h3>Reserved / Sold</h3>
+                <div class="card-value" id="totalReserved">0</div>
+                <p class="card-subtitle">Pending or completed</p>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="recent-section">
+            <div class="section-header">
+                <h3>Recently Added Parts</h3>
+                <a href="inv.html" class="btn-outline">View All</a>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentTableBody">
+                        <!-- JS will load the latest 3 items here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

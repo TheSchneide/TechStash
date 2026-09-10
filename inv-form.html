@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStash - Add/Edit Item</title>
+    <link rel="stylesheet" href="inv-form.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Tech<span class="text-red">Stash</span></div>
+        <div class="nav-links">
+            <a href="index.html">Dashboard</a>
+            <a href="inv.html" class="active">Inventory</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="page-header">
+            <h2 id="pageTitle">Add New Item</h2>
+            <a href="inv.html" class="btn btn-secondary">Back to List</a>
+        </header>
+
+        <div class="form-container">
+            <form id="itemForm">
+                <input type="hidden" id="itemId">
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Item Name</label>
+                        <input type="text" id="itemName" required placeholder="e.g. Intel i5 13th Gen">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="itemCategory">
+                            <option>CPU</option>
+                            <option>GPU</option>
+                            <option>Motherboard</option>
+                            <option>RAM</option>
+                            <option>PSU</option>
+                            <option>Case</option>
+                            <option>Fans</option>
+                            <option>Peripherals</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Condition</label>
+                        <select id="itemCondition">
+                            <option>Brand New</option>
+                            <option>Used - Good</option>
+                            <option>Used - Defective</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Asking Price (₱)</label>
+                        <input type="number" id="itemPrice" required placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="itemStatus">
+                            <option>In Stock</option>
+                            <option>Reserved</option>
+                            <option>Sold</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save Item</button>
+                    <a href="inv.html" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="inv-form.js"></script>
+</body>
+</html>

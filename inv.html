@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TechStash - Inventory List</title>
+    <link rel="stylesheet" href="inv.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Tech<span class="text-red">Stash</span></div>
+        <div class="nav-links">
+            <a href="index.html">Dashboard</a>
+            <a href="inv.html" class="active">Inventory</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="page-header">
+            <h2>Inventory Manager</h2>
+            <a href="inv-form.html" class="btn btn-primary">+ Add New Item</a>
+        </header>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Category</th>
+                        <th>Condition</th>
+                        <th>Price (₱)</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="inventoryTableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="inv.js"></script>
+</body>
+</html>
