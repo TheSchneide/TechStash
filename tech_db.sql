@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS tech_db;
+USE tech_db;
+
+CREATE TABLE IF NOT EXISTS techs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    category VARCHAR(100) NOT NULL,
+    `condition` VARCHAR(100) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    status VARCHAR(50) NOT NULL
+);

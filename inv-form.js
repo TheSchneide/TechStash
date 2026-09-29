@@ -3,41 +3,55 @@ const editId = urlParams.get('id');
 
 if (editId) {
     document.getElementById('pageTitle').textContent = 'Edit Item';
-    const inventory = JSON.parse(localStorage.getItem('techStash_inv')) || [];
-    const itemToEdit = inventory.find(item => item.id == editId);
-    
-    if (itemToEdit) {
-        document.getElementById('itemId').value = itemToEdit.id;
-        document.getElementById('itemName').value = itemToEdit.name;
-        document.getElementById('itemCategory').value = itemToEdit.category;
-        document.getElementById('itemCondition').value = itemToEdit.condition;
-        document.getElementById('itemPrice').value = itemToEdit.price;
-        document.getElementById('itemStatus').value = itemToEdit.status;
-    }
+    fetch(`/api/techs/${editId}`)
+        .then(res => res.json())
+        .then(itemToEdit => {
+            if (itemToEdit) {
+                document.getElementById('itemId').value = itemToEdit.id;
+                document.getElementById('itemName').value = itemToEdit.name;
+                document.getElementById('itemCategory').value = itemToEdit.category;
+                document.getElementById('itemCondition').value = itemToEdit.condition;
+                document.getElementById('itemPrice').value = itemToEdit.price;
+                document.getElementById('itemStatus').value = itemToEdit.status;
+            }
+        })
+        .catch(err => console.error('Error fetching item:', err));
 }
 
-document.getElementById('itemForm').addEventListener('submit', function(e) {
+document.getElementById('itemForm').addEventListener('submit', async function(e) {
     e.preventDefault(); 
-    let inventory = JSON.parse(localStorage.getItem('techStash_inv')) || [];
     
     const itemData = {
         name: document.getElementById('itemName').value,
         category: document.getElementById('itemCategory').value,
         condition: document.getElementById('itemCondition').value,
-        price: document.getElementById('itemPrice').value,
+        price: parseFloat(document.getElementById('itemPrice').value),
         status: document.getElementById('itemStatus').value
     };
 
-    if (editId) {
-        itemData.id = parseInt(editId);
-        const index = inventory.findIndex(item => item.id == editId);
-        inventory[index] = itemData;
-    } else {
-        itemData.id = Date.now(); 
-        inventory.push(itemData);
-    }
+    try {
+        let url = '/api/techs';
+        let method = 'POST';
 
-    localStorage.setItem('techStash_inv', JSON.stringify(inventory));
-    
-    window.location.href = 'inv.html';
+        if (editId) {
+            url = `/api/techs/${editId}`;
+            method = 'PUT';
+        }
+
+        const response = await fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(itemData)
+        });
+
+        if (response.ok) {
+            window.location.href = 'inv.html';
+        } else {
+            alert('Failed to save item');
+        }
+    } catch (error) {
+        console.error('Error saving item:', error);
+    }
 });
